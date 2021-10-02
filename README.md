@@ -2,6 +2,8 @@
 
 This project aims to transcribe in SignWriting a large vocabulary of single-sign videos in various signed languages.
 
+[Help us annotate!](https://signwriting-annotator.web.app)
+
 ## Intermediate Goal
 
 Allow the matching of existing entries in SignBank to videos in SpreadTheSign.
