@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "signwriting-annotator": {
+      "hosting": {
+        "signwriting-annotator": [
+          "signwriting-annotator"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "signwriting-annotator"
+  }
+}

@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "7708fcee-9bf3-4ee2-8db0-68dba90ae64c"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "signwriting-annotation": {
+    "signwriting-annotator": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/signwriting-annotation",
+            "outputPath": "dist/signwriting-annotator",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "signwriting-annotation:build:production"
+              "browserTarget": "signwriting-annotator:build:production"
             },
             "development": {
-              "browserTarget": "signwriting-annotation:build:development"
+              "browserTarget": "signwriting-annotator:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "signwriting-annotation:build"
+            "browserTarget": "signwriting-annotator:build"
           }
         },
         "test": {
@@ -98,9 +101,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
   },
-  "defaultProject": "signwriting-annotation"
+  "defaultProject": "signwriting-annotator"
 }
