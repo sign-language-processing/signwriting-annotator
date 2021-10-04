@@ -38,7 +38,6 @@ export class AnnotationService {
     const candidate = candidateSnapshot[0].payload.doc
 
 
-
     // Update hit date
     await candidate.ref.update({lastHit: new Date()});
 

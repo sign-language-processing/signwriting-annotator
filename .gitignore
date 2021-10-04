@@ -45,3 +45,7 @@ testem.log
 Thumbs.db
 
 .firebase/
+functions/
+functions/serviceAccountKey.json
+functions/lib
+
