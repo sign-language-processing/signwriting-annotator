@@ -1,0 +1,45 @@
+#instructions {
+  p {
+    padding: 8px;
+    padding-bottom: 0px;
+  }
+}
+
+.container, mat-progress-bar {
+  max-width: 960px;
+  border: 1px solid #dadada;
+  margin: 20px auto;
+  background-color: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#side-by-side {
+  display: flex;
+  flex-direction: row;
+
+  > * {
+    flex: 1;
+  }
+
+  :nth-child(2) {
+    background-color: #eaeaea;
+  }
+}
+
+#actions {
+  button {
+    width: 50%;
+    border-radius: 0;
+  }
+}
+
+mat-selection-list {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+mat-list-option {
+  height: initial !important;
+  text-align: center;
+}

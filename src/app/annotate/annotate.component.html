@@ -1,0 +1,33 @@
+<mat-toolbar>
+  <mat-icon>science</mat-icon>
+  <span>&nbsp;SignWriting Annotator</span>
+</mat-toolbar>
+
+<div class="container" id="instructions">
+  <mat-toolbar color="primary">Instructions</mat-toolbar>
+  <p>This annotation tool was built for the creation of a small scale dataset containing videos transcribed with
+    SignWriting.</p>
+  <ul>
+    <li>Select all matching SignWriting instances.</li>
+    <li>If no instance is matching the video select "No Matches".</li>
+    <li>If you are not sure if it matches or not, select "I'm not sure".</li>
+  </ul>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+<div class="container" *ngIf="!loading">
+  <div id="side-by-side">
+    <video controls autoplay loop [src]="candidate.video"></video>
+    <mat-selection-list (selectionChange)="selectSigns($event)">
+      <mat-list-option *ngFor="let sign of signs" [matTooltip]="sign.spoken" [value]="sign.signed">
+        <app-sign-writing [signs]="sign.signed.split(' ')"></app-sign-writing>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+  <div id="actions">
+    <button mat-flat-button color="warn">I'm not sure</button>
+    <button mat-flat-button color="secondary" *ngIf="selectedSigns.length === 0">No Matches</button>
+    <button mat-flat-button color="primary" *ngIf="selectedSigns.length > 0">Select Matches</button>
+  </div>
+</div>
