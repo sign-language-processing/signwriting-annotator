@@ -1,9 +1,3 @@
-#instructions {
-  p {
-    padding: 8px;
-    padding-bottom: 0px;
-  }
-}
 
 .container, mat-progress-bar {
   max-width: 960px;
@@ -22,7 +16,7 @@
     flex: 1;
   }
 
-  :nth-child(2) {
+  > :nth-child(2) {
     background-color: #eaeaea;
   }
 }
@@ -37,9 +31,21 @@
 mat-selection-list {
   max-height: 700px;
   overflow-y: auto;
+  padding-top: 0 !important;
 }
 
 mat-list-option {
   height: initial !important;
   text-align: center;
+}
+
+
+@media only screen and (max-width: 600px) {
+  #side-by-side  {
+    flex-direction: column;
+  }
+
+  mat-selection-list {
+    max-height: initial;
+  }
 }
