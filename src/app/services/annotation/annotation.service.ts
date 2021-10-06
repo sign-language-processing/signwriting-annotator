@@ -26,6 +26,14 @@ export class AnnotationService {
   constructor(private firestore: AngularFirestore) {
   }
 
+  async updateSigns(ref: DocumentReference, signs: string[]) {
+    return ref.update({
+      signs,
+      hits: -1,
+      annotatedAt: new Date()
+    });
+  }
+
   async getAnnotationCandidate(): Promise<{ ref: DocumentReference, data: AnnotationCandidate, signs: any[] }> {
     const candidateSnapshot = await this.firestore.collection('candidates', ref => ref
       .where('spokenLanguage', '==', 'en')

@@ -24,8 +24,8 @@
     </mat-selection-list>
   </div>
   <div id="actions">
-    <button mat-flat-button color="warn">I'm not sure</button>
-    <button mat-flat-button color="secondary" *ngIf="selectedSigns.length === 0">No Matches</button>
-    <button mat-flat-button color="primary" *ngIf="selectedSigns.length > 0">Select Matches</button>
+    <button mat-flat-button color="warn" (click)="skip()">I'm not sure</button>
+    <button mat-flat-button color="secondary" (click)="select()" *ngIf="selectedSigns.length === 0">No Matches</button>
+    <button mat-flat-button color="primary" (click)="select()" *ngIf="selectedSigns.length > 0">Select Matches</button>
   </div>
 </div>

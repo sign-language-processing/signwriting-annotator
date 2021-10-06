@@ -41,4 +41,15 @@ export class AnnotateComponent implements OnInit {
   selectSigns(event: MatSelectionListChange) {
     this.selectedSigns = event.source.options.filter(o => o.selected).map(o => o.value);
   }
+
+
+  skip() {
+    return this.newCandidate();
+  }
+
+  async select() {
+    this.loading = true;
+    await this.annotationService.updateSigns(this.candidateRef, this.selectedSigns);
+    await this.newCandidate();
+  }
 }
