@@ -1,0 +1,31 @@
+<mat-toolbar>
+  <mat-icon>camera</mat-icon>
+  <span>&nbsp;SignWriting Recorder</span>
+</mat-toolbar>
+
+<div class="container" id="instructions">
+  <mat-toolbar color="primary">Instructions</mat-toolbar>
+  <ul>
+    <li>Click the "Record" button</li>
+    <li>Wait 3 seconds, sign for 5 seconds</li>
+    <li>If you are not sure how to sign it, you can skip.</li>
+  </ul>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+<div class="container" *ngIf="!loading">
+  <div id="side-by-side">
+    <video controls autoplay loop></video>
+    <div id="signwriting" [matTooltip]="sign.spoken">
+      <app-sign-writing [signs]="sign.signed.split(' ')"></app-sign-writing>
+    </div>
+  </div>
+  <div id="actions">
+    <button mat-flat-button color="secondary" (click)="record()">Record</button>
+    <button mat-flat-button color="primary" (click)="upload()" *ngIf="video">Upload</button>
+    <button mat-flat-button color="warn" (click)="skip()">Skip</button>
+  </div>
+</div>
+
+<div id="timer" *ngIf="timer > 0">{{timer}}</div>

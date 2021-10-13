@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.container, mat-progress-bar {
+  max-width: 960px;
+  border: 1px solid #dadada;
+  margin: 20px auto;
+  background-color: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#side-by-side {
+  display: flex;
+  flex-direction: row;
+
+  > * {
+    flex: 1;
+  }
+
+  > :nth-child(2) {
+    background-color: #eaeaea;
+  }
+}
+
+video {
+  max-width: 50%;
+}
+
+#actions {
+  display: flex;
+
+  button {
+    flex-grow: 1;
+    border-radius: 0;
+  }
+}
+
+mat-selection-list {
+  max-height: 700px;
+  overflow-y: auto;
+  padding-top: 0 !important;
+}
+
+mat-list-option {
+  height: initial !important;
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 600px) {
+  #side-by-side {
+    flex-direction: column;
+  }
+
+  mat-selection-list {
+    max-height: initial;
+  }
+}

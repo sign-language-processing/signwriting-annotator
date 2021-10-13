@@ -16,18 +16,22 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {CameraComponent} from './camera/camera.component';
+import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnnotateComponent,
-    SignWritingComponent
+    SignWritingComponent,
+    CameraComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
+    AngularFireStorageModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MatButtonModule,

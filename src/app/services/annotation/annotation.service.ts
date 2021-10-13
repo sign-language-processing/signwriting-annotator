@@ -34,7 +34,23 @@ export class AnnotationService {
     });
   }
 
-  async getAnnotationCandidate(): Promise<{ ref: DocumentReference, data: AnnotationCandidate, signs: any[] }> {
+  async getOldestSign(): Promise<{ ref: DocumentReference, sign: CandidateSign }> {
+    const signSnapshot = await this.firestore.collection('signbank', ref => ref
+      .orderBy('lastHit', 'asc')
+      .limit(1)).snapshotChanges().pipe(first()).toPromise();
+
+    const sign = signSnapshot[0].payload.doc
+
+    // Update hit date
+    await sign.ref.update({lastHit: new Date()});
+
+    return {
+      ref: sign.ref,
+      sign: sign.data() as CandidateSign,
+    };
+  }
+
+  async getAnnotationCandidate(): Promise<{ ref: DocumentReference, data: AnnotationCandidate, signs: CandidateSign[] }> {
     const candidateSnapshot = await this.firestore.collection('candidates', ref => ref
       .where('spokenLanguage', '==', 'en')
       .where('countryCode', '==', 'us')
@@ -68,7 +84,7 @@ export class AnnotationService {
     return {
       ref: candidate.ref,
       data: candidateData,
-      signs: signs.map(s => s.payload.doc.data())
+      signs: signs.map(s => s.payload.doc.data()) as CandidateSign[]
     };
   }
 
