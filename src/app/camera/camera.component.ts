@@ -79,7 +79,7 @@ export class CameraComponent implements OnInit {
     setTimeout(() => {
       this.timer = 0;
       recorder.start(1000);
-      setTimeout(() => recorder.stop(), 3000);
+      setTimeout(() => recorder.stop(), 5000);
     }, 3000)
 
   }
