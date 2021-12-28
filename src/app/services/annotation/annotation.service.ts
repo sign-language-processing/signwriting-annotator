@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {first} from 'rxjs/operators';
 import firebase from 'firebase/compat';
+import {firstValueFrom} from "rxjs";
 import DocumentReference = firebase.firestore.DocumentReference;
 
 export interface AnnotationCandidate {
@@ -35,9 +35,9 @@ export class AnnotationService {
   }
 
   async getOldestSign(): Promise<{ ref: DocumentReference, sign: CandidateSign }> {
-    const signSnapshot = await this.firestore.collection('signbank', ref => ref
+    const signSnapshot = await firstValueFrom(this.firestore.collection('signbank', ref => ref
       .orderBy('lastHit', 'asc')
-      .limit(1)).snapshotChanges().pipe(first()).toPromise();
+      .limit(1)).snapshotChanges());
 
     const sign = signSnapshot[0].payload.doc
 
@@ -51,13 +51,13 @@ export class AnnotationService {
   }
 
   async getAnnotationCandidate(): Promise<{ ref: DocumentReference, data: AnnotationCandidate, signs: CandidateSign[] }> {
-    const candidateSnapshot = await this.firestore.collection('candidates', ref => ref
+    const candidateSnapshot = await firstValueFrom(this.firestore.collection('candidates', ref => ref
       .where('spokenLanguage', '==', 'en')
       .where('countryCode', '==', 'us')
       .where('hits', '>=', 0)
       .orderBy('hits', 'asc')
       .orderBy('lastHit', 'asc')
-      .limit(1)).snapshotChanges().pipe(first()).toPromise();
+      .limit(1)).snapshotChanges());
 
     const candidate = candidateSnapshot[0].payload.doc
 
@@ -69,11 +69,11 @@ export class AnnotationService {
     const candidateData = candidate.data() as AnnotationCandidate;
     console.log(candidateData);
 
-    const signs = await this.firestore.collection('signbank', ref =>
+    const signs = await firstValueFrom(this.firestore.collection('signbank', ref =>
       ref.where('spoken', 'in', candidateData.texts.map(t => t.toLowerCase()))
         .where('spokenLanguage', '==', candidateData.spokenLanguage)
         .where('countryCode', '==', candidateData.countryCode)
-    ).snapshotChanges().pipe(first()).toPromise();
+    ).snapshotChanges());
 
     if (signs.length === 0) {
       await candidate.ref.update({hits: -1});

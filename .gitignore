@@ -31,6 +31,7 @@ chrome-profiler-events*.json
 .history/*
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -48,4 +49,4 @@ Thumbs.db
 functions/
 functions/serviceAccountKey.json
 functions/lib
-
+.angular
